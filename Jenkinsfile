@@ -1,3 +1,9 @@
+def gitPullAll(String credentialsId) {
+    sshagent([credentialsId]) {
+        sh("git pull -all") 
+    }
+}
+
 pipeline {
     agent {
         docker {
@@ -8,7 +14,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh label: '', script: 'git pull -all'
+                gitPullAll "strategdk"
+                //sh label: '', script: 'git pull -all'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
