@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh label: '', script: 'git pull -all'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
