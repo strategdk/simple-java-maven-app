@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git pull: '**', credentialsId: '7981a5f7-164d-4c37-a12a-1a8f48ae3241', url: 'https://github.com/strategdk/simple-java-maven-app.git'
+                git fetch: '**', credentialsId: '7981a5f7-164d-4c37-a12a-1a8f48ae3241', url: 'https://github.com/strategdk/simple-java-maven-app.git'
                 sh 'git checkout -a'
                 //gitPullAll "7981a5f7-164d-4c37-a12a-1a8f48ae3241"
                 //sh label: '', script: 'git pull -all'
