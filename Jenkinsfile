@@ -1,5 +1,6 @@
 def gitPullAll(String credentialsId) {
     sshagent([credentialsId]) {
+        
         sh("git pull -all") 
     }
 }
@@ -14,7 +15,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                gitPullAll "7981a5f7-164d-4c37-a12a-1a8f48ae3241"
+                git pull: '**', credentialsId: '7981a5f7-164d-4c37-a12a-1a8f48ae3241', url: 'https://github.com/strategdk/simple-java-maven-app.git'
+                //gitPullAll "7981a5f7-164d-4c37-a12a-1a8f48ae3241"
                 //sh label: '', script: 'git pull -all'
                 sh 'mvn -B -DskipTests clean package'
             }
